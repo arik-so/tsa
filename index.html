@@ -78,7 +78,10 @@
 
             setTimeout(randomDirection, 1000);
 
-            document.onclick = function() {
+            window.addEventListener('click', handleClick, false);
+            window.addEventListener('touchstart', handleClick, false);
+
+            function handleClick() {
                 if (pending) {
                     return;
                 }
