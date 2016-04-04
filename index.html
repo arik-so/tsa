@@ -80,7 +80,7 @@
             setTimeout(randomDirection, 1000);
 
             window.addEventListener('click', handleClick, false);
-            window.addEventListener('touchstart', handleClick, false);
+            window.addEventListener('touchend', handleClick, false);
 
             function handleClick() {
                 if (pending) {
