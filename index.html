@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -43,10 +43,10 @@
             cursor: pointer;
 
             -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none;   /* Chrome/Safari/Opera */
-            -khtml-user-select: none;    /* Konqueror */
-            -moz-user-select: none;      /* Firefox */
-            -ms-user-select: none;       /* IE/Edge */
+            -webkit-user-select: none; /* Chrome/Safari/Opera */
+            -khtml-user-select: none; /* Konqueror */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE/Edge */
             user-select: none;
         }
 
@@ -54,7 +54,7 @@
             margin-top: 50px;
         }
 
-        div#tsa_container.none > div#arrow, div#tsa_container.reloading > div#arrow {
+        div#tsa_container.none > div#arrow {
             display: none;
         }
 
@@ -75,11 +75,23 @@
             margin: auto;
         }
 
+        div#tsa_container.reloading > div#arrow {
+            background: none;
+        }
+
         div#tsa_container.left > div#arrow {
             background-position: 0, 0;
         }
 
-        div#tsa_container:not(.right) > div#direction_label > div#direction_right {
+        div#tsa_container.none > div#direction_label {
+            display: none;
+        }
+
+        div#tsa_container.reloading > div#direction_label {
+            color: transparent;
+        }
+
+        div#tsa_container.left > div#direction_label > div#direction_right {
             display: none;
         }
 
@@ -159,25 +171,36 @@
                 </div>
             </div>
 
-            <div class="mastfoot">
-               <div class="inner">
-                   <a target="_blank" href="https://github.com/arik-so/tsa/fork" class="btn btn-social-icon btn-github">
-                       <span class="fa fa-github"></span>
-                   </a>
-                   <a target="_blank" href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph" class="btn btn-social-icon btn-twitter">
-                       <span class="fa fa-twitter"></span>
-                   </a>
+            <div id="social_footer" class="mastfoot">
+                <div class="inner">
+                    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
+                       class="btn btn-social-icon btn-github">
+                        <span class="fa fa-github"></span>
+                    </a>
+                    <a target="_blank"
+                       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
+                       class="btn btn-social-icon btn-twitter">
+                        <span class="fa fa-twitter"></span>
+                    </a>
 
 
-                   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                   <!--<iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+                    <script>!function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + '://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'twitter-wjs');</script>
+                    <!--<iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 
-                   <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
-                   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
 
-                   <!--<p>Fork me on <a href="https://github.com/arik-so/tsa">Github</a>, by <a href="https://twitter.com/arikaleph">@arikaleph</a>.</p>-->
-               </div>
-           </div>
+                    <!--<p>Fork me on <a href="https://github.com/arik-so/tsa">Github</a>, by <a href="https://twitter.com/arikaleph">@arikaleph</a>.</p>-->
+                </div>
+            </div>
 
         </div>
 
@@ -200,9 +223,9 @@
 
     $(window).ready(function() {
 
-        document.ontouchstart = function(e) {
-            e.preventDefault();
-        };
+        /*document.ontouchstart = function(e) {
+         e.preventDefault();
+         };*/
 
         var tsaPending = true;
 
@@ -210,6 +233,10 @@
 
         window.addEventListener('click', tsaHandleClick, false);
         window.addEventListener('touchend', tsaHandleClick, false);
+
+        $('#social_footer')[0].addEventListener('touchend', function(event) {
+            event.stopPropagation();
+        });
 
         function tsaHandleClick() {
             if (tsaPending) {
