@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>TSA Line Assistant</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+
+        html, body {
+            background-color: rgb(50, 60, 120);
+            color: rgb(180, 255, 255);
+            font-weight: bold;
+
+            cursor: pointer;
+
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Chrome/Safari/Opera */
+            -khtml-user-select: none; /* Konqueror */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE/Edge */
+            user-select: none;
+        }
+
+        div#tsa_container {
+            margin-top: 50px;
+        }
+
+        div#tsa_container.none > div#arrow {
+            display: none;
+        }
+
+        div#tsa_container:not(.none) > div#loading {
+            display: none;
+        }
+
+        div#tsa_container:not(.reloading) > div#reloading {
+            display: none;
+        }
+
+        div#arrow {
+            background-image: url('resources/images/arrows.png');
+            height: 200px;
+            width: 200px;
+            background-size: 400px 200px;
+            background-repeat: no-repeat;
+            margin: auto;
+        }
+
+        div#tsa_container.reloading > div#arrow {
+            background: none;
+        }
+
+        div#tsa_container.left > div#arrow {
+            background-position: 0, 0;
+        }
+
+        div#tsa_container.none > div#direction_label {
+            display: none;
+        }
+
+        div#tsa_container.reloading > div#direction_label {
+            color: transparent;
+            text-shadow: none;
+        }
+
+        div#tsa_container.left > div#direction_label > div#direction_right {
+            display: none;
+        }
+
+        div#tsa_container.right > div#arrow {
+            background-position: -200px, 0;
+        }
+
+        div#tsa_container:not(.left) > div#direction_label > div#direction_left {
+            display: none;
+        }
+
+        @media (min-height: 550px) {
+            div#arrow {
+                background-image: url('resources/images/arrows.png');
+                height: 300px;
+                width: 300px;
+                background-size: 600px 300px;
+                background-repeat: no-repeat;
+                margin: auto;
+            }
+
+            div#tsa_container.right > div#arrow {
+                background-position: -300px, 0;
+            }
+
+            div#tsa_container {
+                font-size: 60px;
+                margin-top: 0;
+            }
+        }
+
+        @media (min-height: 850px) {
+            div#arrow {
+                background-image: url('resources/images/arrows.png');
+                height: 600px;
+                width: 600px;
+                background-size: 1200px 600px;
+                background-repeat: no-repeat;
+                margin: auto;
+            }
+
+            div#tsa_container.right > div#arrow {
+                background-position: -600px, 0;
+            }
+
+            div#tsa_container {
+                font-size: 90px;
+                margin-top: 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <!--<div class="masthead clearfix">
+               <div class="inner">
+                   <h3 class="masthead-brand">Cover</h3>
+                   <nav>
+                       &lt;!&ndash;<ul class="nav masthead-nav">
+                           <li class="active"><a href="#">Home</a></li>
+                           <li><a href="#">Features</a></li>
+                           <li><a href="#">Contact</a></li>
+                       </ul>&ndash;&gt;
+                       <iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+
+                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
+                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                   </nav>
+               </div>
+           </div>-->
+
+            <div class="inner cover">
+                <div id="tsa_container" class="none">
+                    <div id="arrow"></div>
+                    <div id="direction_label">
+                        <div id="direction_left">
+                            LEFT
+                        </div>
+                        <div id="direction_right">
+                            RIGHT
+                        </div>
+                    </div>
+                    <div id="loading">
+                        Initializing TSA Line Assistant
+                    </div>
+                    <div id="reloading">
+                    </div>
+                </div>
+            </div>
+
+            <div id="social_footer" class="mastfoot">
+                <div class="inner">
+                    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
+                       class="btn btn-social-icon btn-github">
+                        <span class="fa fa-github"></span>
+                    </a>
+                    <a target="_blank"
+                       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
+                       class="btn btn-social-icon btn-twitter">
+                        <span class="fa fa-twitter"></span>
+                    </a>
+
+
+                    <script>!function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + '://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'twitter-wjs');</script>
+                    <!--<iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
+
+                    <!--<p>Fork me on <a href="https://github.com/arik-so/tsa">Github</a>, by <a href="https://twitter.com/arikaleph">@arikaleph</a>.</p>-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $(window).ready(function() {
+
+        /*document.ontouchstart = function(e) {
+         e.preventDefault();
+         };*/
+
+        var tsaPending = true;
+
+        setTimeout(tsaRandomizeDirection, 1000);
+
+        window.addEventListener('click', tsaHandleClick, false);
+        window.addEventListener('touchend', tsaHandleClick, false);
+
+        $('#social_footer')[0].addEventListener('touchend', function(event) {
+            event.stopPropagation();
+        });
+
+        function tsaHandleClick() {
+            if (tsaPending) {
+                return;
+            }
+
+            tsaRandomizeDirection();
+        }
+
+        function tsaRandomizeDirection() {
+
+            tsaPending = true;
+            document.getElementById('tsa_container').className = 'reloading';
+
+            var random = Math.random();
+            var direction = 'left';
+            if (random > 0.5) {
+                direction = 'right';
+            }
+
+            setTimeout(function() {
+                document.getElementById('tsa_container').className = direction;
+                tsaPending = false;
+            }, 100);
+
+        }
+    });
+
+</script>
