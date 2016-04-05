@@ -41,6 +41,7 @@
           height: 100%;
           min-height: 100%;
         }
+
         .cover-container {
           display: table-cell;
           vertical-align: middle;
@@ -48,7 +49,32 @@
 
         .mastfoot {
           position: fixed;
+          right: 0;
           bottom: 0;
+          left: 0;
+          padding: 30px;
+        }
+        .btn-social-icon {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          padding: 4px;
+          border: solid 1px rgba(0,0,0,0.2);
+          border-radius: 4px;
+          text-shadow: 1px 1px rgba(0,0,0,0.2);
+          vertical-align: middle;
+        }
+        .btn-social-icon > img {
+          width: 24px;
+          height: 24px;
+        }
+        .btn-twitter {
+          color: #fff;
+          background: #55acee;
+        }
+        .btn-github {
+          color: #fff;
+          background: #444;
         }
         #tsa_container {
           max-width: 700px;
@@ -159,12 +185,12 @@
   <div class="inner">
     <a target="_blank" href="https://github.com/arik-so/tsa/fork"
        class="btn btn-social-icon btn-github">
-        <span class="fa fa-github"></span>
+       <img src="resources/images/github.svg" alt="Github">
     </a>
     <a target="_blank"
        href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
        class="btn btn-social-icon btn-twitter">
-        <span class="fa fa-twitter"></span>
+       <img src="resources/images/twitter.svg" alt="Twitter">
     </a>
 
     <script>!function(d, s, id) {
