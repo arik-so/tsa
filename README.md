@@ -8,6 +8,10 @@ This tool is a sophisticated line management and direction randomization assista
 3. To install the application, enter `tsa.arik.io` into the address bar. 
 4. The application will be automatically downloaded to your browser and ready for use. Your credit card will automatically be charged for $9.99.
 
+## TSA Line Assistant Certification courses
+
+Using our cloud services can require enhanced training. Ensure your team has the skills to succeed. Our certification courses provide operational training and the deepest level of technical expertise for TSA Line Assistant deployments.
+
 ## Troubleshooting
 
 **What if someone** *suspicious looking* **is not selected for screening by the app**
