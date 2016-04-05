@@ -14,14 +14,14 @@ Using our cloud services can require enhanced training. Ensure your team has the
 
 ## Troubleshooting
 
-**What if someone** *suspicious looking* **is not selected for screening by the app**
+**Q: What if someone** *suspicious looking* **is not selected for screening by the app?**
 
-It is possible that the app will at times provided an unwanted result. If this occurs simply rotate the iPad by 180 degrees.
+A: It is possible that the app will at times provided an unwanted result. If this occurs simply rotate the iPad by 180 degrees.
 
-**What if my particular situation requires more than 2 direction arrows**
+**Q: What if my particular situation requires more than 2 direction arrows?**
 
-We currently enable two directions for free. If more than two direction arrows is required for your particular use case, please contact us at sales@tsaengineering.com to learn more about our paid plans.
+A: We currently enable two directions for free. If more than two direction arrows are required for your particular use case, please contact us at sales@tsaengineering.com to learn more about our paid plans.
 
-**I paid an extra $336,000 for an extra direction for my arrow, but now I don't need it**
+**Q: I paid an extra $336,000 for an extra direction for my arrow, but now I don't need it.**
 
-TSA Engineering does not reimburse users for unused direction arrows.
+A: TSA Engineering does not reimburse users for unused direction arrows.
