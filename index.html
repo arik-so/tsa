@@ -9,117 +9,125 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <link href="cover.css" rel="stylesheet">
 
     <style>
 
         html, body {
-            background-color: rgb(50, 60, 120);
-            color: rgb(180, 255, 255);
-            font-weight: bold;
+          position: relative;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: rgb(50, 60, 120);
+          color: rgb(180, 255, 255);
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          font-weight: bold;
+          text-align: center;
+          -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 
-            cursor: pointer;
+          cursor: pointer;
 
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Chrome/Safari/Opera */
-            -khtml-user-select: none; /* Konqueror */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE/Edge */
-            user-select: none;
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Chrome/Safari/Opera */
+          -khtml-user-select: none; /* Konqueror */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* IE/Edge */
+          user-select: none;
         }
 
-        div#tsa_container {
-            margin-top: 50px;
+        .site-wrapper {
+          display: table;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
+        }
+        .cover-container {
+          display: table-cell;
+          vertical-align: middle;
         }
 
-        div#tsa_container.none > div#arrow {
-            display: none;
+        .mastfoot {
+          position: fixed;
+          bottom: 0;
+        }
+        #tsa_container {
+          max-width: 700px;
+          margin: 50px auto;
         }
 
-        div#tsa_container:not(.none) > div#loading {
-            display: none;
+        #tsa_container.none > #arrow,
+        #tsa_container:not(.none) > #loading,
+        #tsa_container:not(.reloading) > #reloading,
+        #tsa_container.none > #direction_label,
+        #tsa_container.left > #direction_label > #direction_right,
+        #tsa_container:not(.left) > #direction_label > #direction_left {
+          display: none;
         }
 
-        div#tsa_container:not(.reloading) > div#reloading {
-            display: none;
+        #arrow {
+          background-image: url('resources/images/arrows.png');
+          height: 200px;
+          width: 200px;
+          background-size: 400px 200px;
+          background-repeat: no-repeat;
+          margin: auto;
         }
 
-        div#arrow {
-            background-image: url('resources/images/arrows.png');
-            height: 200px;
-            width: 200px;
-            background-size: 400px 200px;
-            background-repeat: no-repeat;
-            margin: auto;
+        #tsa_container.reloading > #arrow {
+          background: none;
         }
 
-        div#tsa_container.reloading > div#arrow {
-            background: none;
+        #tsa_container.left > #arrow {
+          background-position: 0 0;
         }
 
-        div#tsa_container.left > div#arrow {
-            background-position: 0, 0;
+        #tsa_container.reloading > #direction_label {
+          color: transparent;
+          text-shadow: none;
         }
 
-        div#tsa_container.none > div#direction_label {
-            display: none;
-        }
-
-        div#tsa_container.reloading > div#direction_label {
-            color: transparent;
-            text-shadow: none;
-        }
-
-        div#tsa_container.left > div#direction_label > div#direction_right {
-            display: none;
-        }
-
-        div#tsa_container.right > div#arrow {
+        #tsa_container.right > #arrow {
             background-position: -200px, 0;
         }
 
-        div#tsa_container:not(.left) > div#direction_label > div#direction_left {
-            display: none;
-        }
-
         @media (min-height: 550px) {
-            div#arrow {
-                background-image: url('resources/images/arrows.png');
-                height: 300px;
-                width: 300px;
-                background-size: 600px 300px;
-                background-repeat: no-repeat;
-                margin: auto;
-            }
+          #arrow {
+            background-image: url('resources/images/arrows.png');
+            height: 300px;
+            width: 300px;
+            background-size: 600px 300px;
+            background-repeat: no-repeat;
+            margin: auto;
+          }
 
-            div#tsa_container.right > div#arrow {
-                background-position: -300px, 0;
-            }
+          #tsa_container.right > #arrow {
+            background-position: -300px, 0;
+          }
 
-            div#tsa_container {
-                font-size: 60px;
-                margin-top: 0;
-            }
+          #tsa_container {
+            font-size: 60px;
+            margin-top: 0;
+          }
         }
 
         @media (min-height: 850px) {
-            div#arrow {
-                background-image: url('resources/images/arrows.png');
-                height: 600px;
-                width: 600px;
-                background-size: 1200px 600px;
-                background-repeat: no-repeat;
-                margin: auto;
-            }
+          #arrow {
+            background-image: url('resources/images/arrows.png');
+            height: 600px;
+            width: 600px;
+            background-size: 1200px 600px;
+            background-repeat: no-repeat;
+            margin: auto;
+          }
 
-            div#tsa_container.right > div#arrow {
-                background-position: -600px, 0;
-            }
+          #tsa_container.right > #arrow {
+            background-position: -600px, 0;
+          }
 
-            div#tsa_container {
-                font-size: 90px;
-                margin-top: 0;
-            }
+          #tsa_container {
+            font-size: 90px;
+            margin-top: 0;
+          }
         }
 
     </style>
@@ -127,87 +135,50 @@
 </head>
 
 <body>
-
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <!--<div class="masthead clearfix">
-               <div class="inner">
-                   <h3 class="masthead-brand">Cover</h3>
-                   <nav>
-                       &lt;!&ndash;<ul class="nav masthead-nav">
-                           <li class="active"><a href="#">Home</a></li>
-                           <li><a href="#">Features</a></li>
-                           <li><a href="#">Contact</a></li>
-                       </ul>&ndash;&gt;
-                       <iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
-
-                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
-                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                   </nav>
-               </div>
-           </div>-->
-
-            <div class="inner cover">
-                <div id="tsa_container" class="none">
-                    <div id="arrow"></div>
-                    <div id="direction_label">
-                        <div id="direction_left">
-                            LEFT
-                        </div>
-                        <div id="direction_right">
-                            RIGHT
-                        </div>
-                    </div>
-                    <div id="loading">
-                        Initializing TSA Line Assistant
-                    </div>
-                    <div id="reloading">
-                    </div>
-                </div>
-            </div>
-
-            <div id="social_footer" class="mastfoot">
-                <div class="inner">
-                    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
-                       class="btn btn-social-icon btn-github">
-                        <span class="fa fa-github"></span>
-                    </a>
-                    <a target="_blank"
-                       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
-                       class="btn btn-social-icon btn-twitter">
-                        <span class="fa fa-twitter"></span>
-                    </a>
-
-
-                    <script>!function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + '://platform.twitter.com/widgets.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, 'script', 'twitter-wjs');</script>
-                    <!--<iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
-
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
-
-                    <!--<p>Fork me on <a href="https://github.com/arik-so/tsa">Github</a>, by <a href="https://twitter.com/arikaleph">@arikaleph</a>.</p>-->
-                </div>
-            </div>
-
+  <div class="site-wrapper">
+    <div class="cover-container">
+      <div id="tsa_container" class="none">
+        <div id="arrow"></div>
+        <div id="direction_label">
+          <div id="direction_left">
+              LEFT
+          </div>
+          <div id="direction_right">
+              RIGHT
+          </div>
         </div>
-
+      <div id="loading">
+          Initializing TSA Line Assistant
+      </div>
+      <div id="reloading">
+      </div>
     </div>
-
 </div>
 
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<div id="social_footer" class="mastfoot">
+  <div class="inner">
+    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
+       class="btn btn-social-icon btn-github">
+        <span class="fa fa-github"></span>
+    </a>
+    <a target="_blank"
+       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
+       class="btn btn-social-icon btn-twitter">
+        <span class="fa fa-twitter"></span>
+    </a>
+
+    <script>!function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
+
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
