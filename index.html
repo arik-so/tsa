@@ -213,56 +213,47 @@
 
 <script type="text/javascript">
 
-    $(window).ready(function() {
+  var tsaPending = true;
 
-        /*document.ontouchstart = function(e) {
-         e.preventDefault();
-         };*/
+  setTimeout(tsaRandomizeDirection, 1000);
 
-        var tsaPending = true;
+  window.addEventListener('click', tsaHandleClick, false);
+  window.addEventListener('touchend', tsaHandleClick, false);
 
-        setTimeout(tsaRandomizeDirection, 1000);
+  document.getElementById('social_footer').addEventListener('touchend', function(event) {
+      event.stopPropagation();
+  });
 
-        window.addEventListener('click', tsaHandleClick, false);
-        window.addEventListener('touchend', tsaHandleClick, false);
+  function tsaHandleClick() {
+    if (tsaPending) {
+      return;
+    }
 
-        $('#social_footer')[0].addEventListener('touchend', function(event) {
-            event.stopPropagation();
-        });
+    tsaRandomizeDirection();
+  }
 
-        function tsaHandleClick() {
-            if (tsaPending) {
-                return;
-            }
+  function tsaRandomizeDirection() {
 
-            tsaRandomizeDirection();
-        }
+    tsaPending = true;
+    document.getElementById('tsa_container').className = 'reloading';
 
-        function tsaRandomizeDirection() {
+    var random = Math.random();
+    var direction = 'left';
 
-            tsaPending = true;
-            document.getElementById('tsa_container').className = 'reloading';
+    if(window.crypto) {
+      random = window.crypto.getRandomValues(new Uint8Array(1))[0];
+      if(random >= 128) {
+        direction = 'right';
+      }
+    } else if (random >= 0.5) {
+      direction = 'right';
+    }
 
-            var random = Math.random();
-            var direction = 'left';
-
-            if(window.crypto) {
-              random = window.crypto.getRandomValues(new Uint8Array(1))[0];
-              if(random >= 128) {
-                direction = 'right';
-              }
-            } else if (random >= 0.5) {
-              direction = 'right';
-            }
-
-            setTimeout(function() {
-                document.getElementById('tsa_container').className = direction;
-                tsaPending = false;
-            }, 100);
-
-        }
-    });
-
+    setTimeout(function() {
+      document.getElementById('tsa_container').className = direction;
+      tsaPending = false;
+    }, 100);
+  }
 </script>
 </body>
 </html>
