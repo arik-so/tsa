@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>TSA Line Assistant</title>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
 
     <style>
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
 
         html, body {
           position: relative;
@@ -205,9 +207,6 @@
   </div>
 </div>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
 <script type="text/javascript">
 
   var tsaPending = true;
@@ -251,6 +250,21 @@
       tsaPending = false;
     }, 100);
   }
+
+  (function () {
+    'use strict';
+
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement('style');
+      msViewportStyle.appendChild(
+        document.createTextNode(
+          '@-ms-viewport{width:auto!important}'
+        )
+      );
+      document.querySelector('head').appendChild(msViewportStyle);
+    }
+
+  })();
 </script>
 </body>
 </html>
