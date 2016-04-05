@@ -103,7 +103,27 @@
             display: none;
         }
 
-        @media (min-width: 992px) {
+        @media (min-height: 550px) {
+            div#arrow {
+                background-image: url('resources/images/arrows.png');
+                height: 300px;
+                width: 300px;
+                background-size: 600px 300px;
+                background-repeat: no-repeat;
+                margin: auto;
+            }
+
+            div#tsa_container.right > div#arrow {
+                background-position: -300px, 0;
+            }
+
+            div#tsa_container {
+                font-size: 80px;
+                margin-top: 0;
+            }
+        }
+
+        @media (min-height: 850px) {
             div#arrow {
                 background-image: url('resources/images/arrows.png');
                 height: 600px;
