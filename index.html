@@ -274,8 +274,14 @@
 
             var random = Math.random();
             var direction = 'left';
-            if (random > 0.5) {
+
+            if(window.crypto) {
+              random = window.crypto.getRandomValues(new Uint8Array(1))[0];
+              if(random >= 128) {
                 direction = 'right';
+              }
+            } else if (random >= 0.5) {
+              direction = 'right';
             }
 
             setTimeout(function() {
