@@ -4,144 +4,159 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-
     <title>TSA Line Assistant</title>
+    <link rel="shortcut icon" href="./favicon.ico">
 
-    <!-- Bootstrap core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet">
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]>
-    <script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
     <style>
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
 
         html, body {
-            background-color: rgb(50, 60, 120);
-            color: rgb(180, 255, 255);
-            font-weight: bold;
+          position: relative;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: rgb(50, 60, 120);
+          color: rgb(180, 255, 255);
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          font-weight: bold;
+          text-align: center;
+          -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 
-            cursor: pointer;
+          cursor: pointer;
 
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Chrome/Safari/Opera */
-            -khtml-user-select: none; /* Konqueror */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE/Edge */
-            user-select: none;
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Chrome/Safari/Opera */
+          -khtml-user-select: none; /* Konqueror */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* IE/Edge */
+          user-select: none;
         }
 
-        div#tsa_container {
-            margin-top: 50px;
+        .site-wrapper {
+          display: table;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
         }
 
-        div#tsa_container.none > div#arrow {
-            display: none;
+        .cover-container {
+          display: table-cell;
+          vertical-align: middle;
         }
 
-        div#tsa_container:not(.none) > div#loading {
-            display: none;
+        .mastfoot {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 30px;
+        }
+        .btn-social-icon {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          padding: 4px;
+          border: solid 1px rgba(0,0,0,0.2);
+          border-radius: 4px;
+          text-shadow: 1px 1px rgba(0,0,0,0.2);
+          vertical-align: middle;
+        }
+        .btn-social-icon > img {
+          width: 24px;
+          height: 24px;
+        }
+        .btn-twitter {
+          color: #fff;
+          background: #55acee;
+        }
+        .btn-github {
+          color: #fff;
+          background: #444;
+        }
+        #tsa_container {
+          max-width: 700px;
+          margin: 50px auto;
         }
 
-        div#tsa_container:not(.reloading) > div#reloading {
-            display: none;
+        #tsa_container.none > #arrow,
+        #tsa_container:not(.none) > #loading,
+        #tsa_container:not(.reloading) > #reloading,
+        #tsa_container.none > #direction_label,
+        #tsa_container.left > #direction_label > #direction_right,
+        #tsa_container:not(.left) > #direction_label > #direction_left {
+          display: none;
         }
 
-        div#arrow {
-            background-image: url('resources/images/arrows.png');
-            height: 200px;
-            width: 200px;
-            background-size: 400px 200px;
-            background-repeat: no-repeat;
-            margin: auto;
+        #arrow {
+          background-image: url('resources/images/arrows.png');
+          height: 200px;
+          width: 200px;
+          background-size: 400px 200px;
+          background-repeat: no-repeat;
+          margin: auto;
         }
 
-        div#tsa_container.reloading > div#arrow {
-            background: none;
+        #tsa_container.reloading > #arrow {
+          background: none;
         }
 
-        div#tsa_container.left > div#arrow {
-            background-position: 0, 0;
+        #tsa_container.left > #arrow {
+          background-position: 0 0;
         }
 
-        div#tsa_container.none > div#direction_label {
-            display: none;
+        #tsa_container.reloading > #direction_label {
+          color: transparent;
+          text-shadow: none;
         }
 
-        div#tsa_container.reloading > div#direction_label {
-            color: transparent;
-            text-shadow: none;
-        }
-
-        div#tsa_container.left > div#direction_label > div#direction_right {
-            display: none;
-        }
-
-        div#tsa_container.right > div#arrow {
+        #tsa_container.right > #arrow {
             background-position: -200px, 0;
         }
 
-        div#tsa_container:not(.left) > div#direction_label > div#direction_left {
-            display: none;
-        }
-
         @media (min-height: 550px) {
-            div#arrow {
-                background-image: url('resources/images/arrows.png');
-                height: 300px;
-                width: 300px;
-                background-size: 600px 300px;
-                background-repeat: no-repeat;
-                margin: auto;
-            }
+          #arrow {
+            background-image: url('resources/images/arrows.png');
+            height: 300px;
+            width: 300px;
+            background-size: 600px 300px;
+            background-repeat: no-repeat;
+            margin: auto;
+          }
 
-            div#tsa_container.right > div#arrow {
-                background-position: -300px, 0;
-            }
+          #tsa_container.right > #arrow {
+            background-position: -300px, 0;
+          }
 
-            div#tsa_container {
-                font-size: 60px;
-                margin-top: 0;
-            }
+          #tsa_container {
+            font-size: 60px;
+            margin-top: 0;
+          }
         }
 
         @media (min-height: 850px) {
-            div#arrow {
-                background-image: url('resources/images/arrows.png');
-                height: 600px;
-                width: 600px;
-                background-size: 1200px 600px;
-                background-repeat: no-repeat;
-                margin: auto;
-            }
+          #arrow {
+            background-image: url('resources/images/arrows.png');
+            height: 600px;
+            width: 600px;
+            background-size: 1200px 600px;
+            background-repeat: no-repeat;
+            margin: auto;
+          }
 
-            div#tsa_container.right > div#arrow {
-                background-position: -600px, 0;
-            }
+          #tsa_container.right > #arrow {
+            background-position: -600px, 0;
+          }
 
-            div#tsa_container {
-                font-size: 90px;
-                margin-top: 0;
-            }
+          #tsa_container {
+            font-size: 90px;
+            margin-top: 0;
+          }
         }
 
     </style>
@@ -149,147 +164,108 @@
 </head>
 
 <body>
-
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <!--<div class="masthead clearfix">
-               <div class="inner">
-                   <h3 class="masthead-brand">Cover</h3>
-                   <nav>
-                       &lt;!&ndash;<ul class="nav masthead-nav">
-                           <li class="active"><a href="#">Home</a></li>
-                           <li><a href="#">Features</a></li>
-                           <li><a href="#">Contact</a></li>
-                       </ul>&ndash;&gt;
-                       <iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
-
-                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
-                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                   </nav>
-               </div>
-           </div>-->
-
-            <div class="inner cover">
-                <div id="tsa_container" class="none">
-                    <div id="arrow"></div>
-                    <div id="direction_label">
-                        <div id="direction_left">
-                            LEFT
-                        </div>
-                        <div id="direction_right">
-                            RIGHT
-                        </div>
-                    </div>
-                    <div id="loading">
-                        Initializing TSA Line Assistant
-                    </div>
-                    <div id="reloading">
-                    </div>
-                </div>
-            </div>
-
-            <div id="social_footer" class="mastfoot">
-                <div class="inner">
-                    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
-                       class="btn btn-social-icon btn-github">
-                        <span class="fa fa-github"></span>
-                    </a>
-                    <a target="_blank"
-                       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
-                       class="btn btn-social-icon btn-twitter">
-                        <span class="fa fa-twitter"></span>
-                    </a>
-
-
-                    <script>!function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + '://platform.twitter.com/widgets.js';
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, 'script', 'twitter-wjs');</script>
-                    <!--<iframe src="https://ghbtns.com/github-btn.html?user=arik-so&repo=tsa&type=fork&count=true" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
-
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://tsa.arik.io" data-via="arikaleph" data-hashtags="tsaengineering" data-dnt="true">Tweet</a>
-                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
-
-                    <!--<p>Fork me on <a href="https://github.com/arik-so/tsa">Github</a>, by <a href="https://twitter.com/arikaleph">@arikaleph</a>.</p>-->
-                </div>
-            </div>
-
+  <div class="site-wrapper">
+    <div class="cover-container">
+      <div id="tsa_container" class="none">
+        <div id="arrow"></div>
+        <div id="direction_label">
+          <div id="direction_left">
+              LEFT
+          </div>
+          <div id="direction_right">
+              RIGHT
+          </div>
         </div>
-
+      <div id="loading">
+          Initializing TSA Line Assistant
+      </div>
+      <div id="reloading">
+      </div>
     </div>
-
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
-</html>
+<div id="social_footer" class="mastfoot">
+  <div class="inner">
+    <a target="_blank" href="https://github.com/arik-so/tsa/fork"
+       class="btn btn-social-icon btn-github">
+       <img src="resources/images/github.svg" alt="Github">
+    </a>
+    <a target="_blank"
+       href="https://twitter.com/intent/tweet?hashtags=tsaengineering&original_referer=https%3A%2F%2Ftsa.arik.io%2F&ref_src=twsrc%5Etfw&text=TSA%20Line%20Assistant&tw_p=tweetbutton&url=https%3A%2F%2Ftsa.arik.io&via=arikaleph"
+       class="btn btn-social-icon btn-twitter">
+       <img src="resources/images/twitter.svg" alt="Twitter">
+    </a>
+
+    <script>!function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');</script>
+  </div>
+</div>
 
 <script type="text/javascript">
 
-    $(window).ready(function() {
+  var tsaPending = true;
 
-        /*document.ontouchstart = function(e) {
-         e.preventDefault();
-         };*/
+  setTimeout(tsaRandomizeDirection, 1000);
 
-        var tsaPending = true;
+  window.addEventListener('click', tsaHandleClick, false);
+  window.addEventListener('touchend', tsaHandleClick, false);
 
-        setTimeout(tsaRandomizeDirection, 1000);
+  document.getElementById('social_footer').addEventListener('touchend', function(event) {
+      event.stopPropagation();
+  });
 
-        window.addEventListener('click', tsaHandleClick, false);
-        window.addEventListener('touchend', tsaHandleClick, false);
+  function tsaHandleClick() {
+    if (tsaPending) {
+      return;
+    }
 
-        $('#social_footer')[0].addEventListener('touchend', function(event) {
-            event.stopPropagation();
-        });
+    tsaRandomizeDirection();
+  }
 
-        function tsaHandleClick() {
-            if (tsaPending) {
-                return;
-            }
+  function tsaRandomizeDirection() {
 
-            tsaRandomizeDirection();
-        }
+    tsaPending = true;
+    document.getElementById('tsa_container').className = 'reloading';
 
-        function tsaRandomizeDirection() {
+    var random = Math.random();
+    var direction = 'left';
 
-            tsaPending = true;
-            document.getElementById('tsa_container').className = 'reloading';
+    if(window.crypto) {
+      random = window.crypto.getRandomValues(new Uint8Array(1))[0];
+      if(random >= 128) {
+        direction = 'right';
+      }
+    } else if (random >= 0.5) {
+      direction = 'right';
+    }
 
-            var random = Math.random();
-            var direction = 'left';
+    setTimeout(function() {
+      document.getElementById('tsa_container').className = direction;
+      tsaPending = false;
+    }, 100);
+  }
 
-            if(window.crypto) {
-              random = window.crypto.getRandomValues(new Uint8Array(1))[0];
-              if(random >= 128) {
-                direction = 'right';
-              }
-            } else if (random >= 0.5) {
-              direction = 'right';
-            }
+  (function () {
+    'use strict';
 
-            setTimeout(function() {
-                document.getElementById('tsa_container').className = direction;
-                tsaPending = false;
-            }, 100);
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement('style');
+      msViewportStyle.appendChild(
+        document.createTextNode(
+          '@-ms-viewport{width:auto!important}'
+        )
+      );
+      document.querySelector('head').appendChild(msViewportStyle);
+    }
 
-        }
-    });
-
+  })();
 </script>
+</body>
+</html>
